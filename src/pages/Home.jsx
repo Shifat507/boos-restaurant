@@ -6,11 +6,15 @@ import SectionTile from '../components/sectionTile';
 import PopularMenu from '../components/PopularMenu';
 import Featured from '../components/Featured';
 import Reviews from '../components/Reviews';
+import { Helmet } from 'react-helmet-async';
 
 
 const Home = () => {
     return (
         <div>
+            <Helmet>
+                <title>Boss | Home</title>
+            </Helmet>
             {/* Banner */}
             <Banner></Banner>
 

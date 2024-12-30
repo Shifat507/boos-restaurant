@@ -2,18 +2,15 @@ import React, { useEffect, useState } from 'react';
 import SectionTile from './sectionTile';
 import axios from 'axios';
 import MenuItem from '../shared/MenuItem';
+import useMenu from '../hooks/UseMenu';
+
+
 
 const PopularMenu = () => {
-    const [menu, setMenu] = useState([]);
-    useEffect(()=>{
-        fetchData();
-    },[])
-    const fetchData = async() =>{
-        const {data} = await axios.get('menu.json')
-        const popularItems = data.filter(item => item.category === 'popular');
-        setMenu(popularItems);
-    }
-    console.log(menu);
+    const [menu] = useMenu();
+    const popularItems = menu.filter(item => item.category === 'popular');
+    
+    console.log(popularItems);
      return (
         <section className='mb-24'>
             <div>
@@ -21,7 +18,7 @@ const PopularMenu = () => {
             </div>
             <div className='grid md:grid-cols-2 gap-10'>
                 {
-                    menu.map(item => <MenuItem key={item._id} item={item}></MenuItem>)
+                    popularItems.map(item => <MenuItem key={item._id} item={item}></MenuItem>)
                 }
             </div>
             <div className='flex justify-center my-6'>
