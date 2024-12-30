@@ -1,7 +1,12 @@
 import React from 'react';
 import Banner from '../components/Banner';
 import CategorySwiper from '../components/CategorySwiper';
-import ShortTitle from '../components/ShortTitle';
+import ShortTitle from '../components/ShortTile';
+import SectionTile from '../components/sectionTile';
+import PopularMenu from '../components/PopularMenu';
+import Featured from '../components/Featured';
+import Reviews from '../components/Reviews';
+
 
 const Home = () => {
     return (
@@ -11,10 +16,7 @@ const Home = () => {
 
             {/* Category */}
             <div className='w-10/12 mx-auto mb-20'>
-                <div className='text-center mt-20 mb-10'>
-                    <p className='text-yellow-600'>---From 11:00am to 10:00pm---</p>
-                    <h2 className='text-4xl font-bold'>ORDER ONLINE</h2>
-                </div>
+                <SectionTile subtitle={'From 11:00am to 10:00pm'} title={'ORDER ONLINE'}></SectionTile>
                 <CategorySwiper></CategorySwiper>
             </div>
 
@@ -22,6 +24,15 @@ const Home = () => {
             <div className='my-24'>
                 <ShortTitle></ShortTitle>
             </div>
+
+            {/* Popular Menu */}
+            <PopularMenu></PopularMenu>
+
+            {/* Featured Section */}
+            <Featured></Featured>
+
+            {/* Testimonials */}
+            <Reviews></Reviews>
         </div>
     );
 };

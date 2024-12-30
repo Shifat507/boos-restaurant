@@ -4,7 +4,7 @@ import bgImg from '../assets/home/chef-service.jpg'
 const ShortTitle = () => {
     return (
         <div
-            className="hero min-h-96"
+            className="hero bg-fixed min-h-96"
             style={{
                 backgroundImage: `url(${bgImg})`,
             }}>
