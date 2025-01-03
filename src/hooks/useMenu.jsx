@@ -8,7 +8,7 @@ const useMenu = () =>{
         fetchData();
     },[])
     const fetchData = async() =>{
-        const {data} = await axios.get('menu.json')
+        const {data} = await axios.get(`${import.meta.env.VITE_URL}/menu`)
         setMenu(data);
         setLoading(false)
     }

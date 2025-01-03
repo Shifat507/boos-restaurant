@@ -20,7 +20,7 @@ const Reviews = () => {
         fetchData();
     }, [])
     const fetchData = async () => {
-        const { data } = await axios.get('reviews.json')
+        const { data } = await axios.get(`${import.meta.env.VITE_URL}/reviews`)
         setReviews(data);
     }
     return (

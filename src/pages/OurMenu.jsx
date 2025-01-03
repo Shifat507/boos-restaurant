@@ -26,23 +26,23 @@ const OurMenu = () => {
 
             {/* Today's Offer */}
             <SectionTile subtitle={'Dont miss'} title={'TODAYs OFFER'}></SectionTile>
-            <MenuItems items={offered}></MenuItems>
+            <MenuItems title={'OUR MENU'} items={offered}></MenuItems>
 
             {/* Desserts */}
             <Cover image={desertImg} title={'DESSERTS'} description={'Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'}></Cover>
-            <MenuItems items={desserts}></MenuItems>
+            <MenuItems title={'desert'} items={desserts}></MenuItems>
 
             {/* Pizza */}
             <Cover image={pizzaImg} title={'PIZZA'} description={'Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'}></Cover>
-            <MenuItems items={pizzas}></MenuItems>
+            <MenuItems title={'pizza'} items={pizzas}></MenuItems>
 
             {/* Soup */}
             <Cover image={soupImg} title={'SOUP'} description={'Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'}></Cover>
-            <MenuItems items={soups}></MenuItems>
+            <MenuItems title={'soup'} items={soups}></MenuItems>
 
             {/* Salad */}
             <Cover image={saladImg} title={'salad'} description={'Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'}></Cover>
-            <MenuItems items={salads}></MenuItems>
+            <MenuItems title={'salad'} items={salads}></MenuItems>
 
 
 
