@@ -3,9 +3,12 @@ import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-s
 import { AuthContext } from '../providers/AuthProvider';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import { FcGoogle } from 'react-icons/fc';
+import useAxiosPublic from '../hooks/useAxiosPublic';
 
 const Login = () => {
-    const { signIn } = useContext(AuthContext);
+    const axiosPublic = useAxiosPublic();
+    const { signIn, googleSignIn } = useContext(AuthContext);
     const [disabled, setDisabled] = useState(true);
     const location = useLocation();
     const navigate = useNavigate();
@@ -14,6 +17,24 @@ const Login = () => {
     useEffect(() => {
         loadCaptchaEnginge(6);
     }, []);
+
+    const handleGoogleSignin = () => {
+        googleSignIn()
+            .then(res => {
+                const userInfo = {
+                    email: res.user?.email,
+                    name: res.user?.displayName
+                }
+                //send user data to DB
+                axiosPublic.post('/users', userInfo)
+                    .then(res => {
+
+                        navigate('/')
+                    })
+                console.log(res.user);
+            })
+
+    }
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -92,6 +113,13 @@ const Login = () => {
                                 </Link>
                             </p>
                         </form>
+                        <div className='mx-6 mb-6'>
+                            <div className='divider'>or</div>
+                            <button onClick={handleGoogleSignin} className="btn w-full">
+                                <FcGoogle size={20} className='flex' />
+                                Login with Google
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

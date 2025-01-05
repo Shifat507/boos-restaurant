@@ -3,32 +3,63 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../providers/AuthProvider';
 import { Helmet } from 'react-helmet-async';
+import useAxiosPublic from '../hooks/useAxiosPublic';
+import { FcGoogle } from 'react-icons/fc';
 
 const Register = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
-    const { createUser, userUpdateData } = useContext(AuthContext);
+    const axiosPublic = useAxiosPublic();
+    const { register, handleSubmit, formState: { errors }, reset } = useForm();
+    const { createUser, userUpdateData, googleSignIn } = useContext(AuthContext);
     const navigate = useNavigate();
+    const handleGoogleSignin = () => {
+        googleSignIn()
+            .then(res => {
+                const userInfo = {
+                    email: res.user?.email,
+                    name: res.user?.displayName
+                }
+                //send user data to DB
+                axiosPublic.post('/users', userInfo)
+                    .then(res => {
 
+                        navigate('/')
+                    })
+                console.log(res.user);
+            })
+
+    }
     const onSubmit = (data) => {
         const { email, password, name, photoURL } = data;
         createUser(email, password)
             .then(res => {
                 console.log(res.user);
                 userUpdateData(name, photoURL)
-                .then(res=>{
-                    console.log(res.user);
-                })
-                .catch(err => {
-                    // console.log('Error: ', err);
-                })
+                    .then(res => {
+                        // create user entry in DB
+                        const userInfo = {
+                            name: data.name,
+                            email: data.email
+                        }
+                        axiosPublic.post('/users', userInfo)
+                            .then(res => {
+                                if (res.data.insertedId) {
+                                    reset();
+                                    navigate('/');
+                                }
+                            })
+                        // console.log(res.user);
+                    })
+                    .catch(err => {
+                        // console.log('Error: ', err);
+                    })
             })
-            .then(() => {
-                navigate('/');
-            })
+
             .catch(error => {
+
                 console.error(error);
                 alert("Error: " + error.message);
             });
+
     };
 
     return (
@@ -86,6 +117,13 @@ const Register = () => {
                             </div>
                             <p className='mx-auto'>Already have an account? <Link to='/login' className='text-blue-700 font-semibold'>Login Now!</Link></p>
                         </form>
+                        <div className='mx-6 mb-6'>
+                            <div className='divider'>or</div>
+                            <button onClick={handleGoogleSignin} className="btn w-full">
+                                <FcGoogle size={20} className='flex' />
+                                Signup with Google
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
