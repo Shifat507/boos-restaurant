@@ -2,12 +2,9 @@ import {
     createBrowserRouter
 } from "react-router-dom";
 import MainLayout from "../layout/MainLayout";
-// import DashBoard from "../layout/DashBoard"
-// import DashBoard from "../layout/DashBoard";
 import Home from "../pages/Home";
 import OurMenu from "../pages/OurMenu";
 import Order from "../pages/Order";
-// import Dashboard from "../pages/Dashboard";
 import ContactUs from "../pages/ContactUs";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
@@ -15,6 +12,7 @@ import DasBoard from "../layout/DashBoard";
 import DashBoard from "../layout/DashBoard";
 import Cart from "../pages/dashboard/cart/cart";
 import PrivateRoute from "./PrivateRoute";
+import AllUsers from "../pages/dashboard/AllUsers/AllUsers";
 
 const router = createBrowserRouter([
     {
@@ -59,6 +57,10 @@ const router = createBrowserRouter([
             {
                 path: 'cart',
                 element: <Cart></Cart>
+            },
+            {
+                path: 'users',
+                element: <AllUsers></AllUsers>
             }
         ]
     }
