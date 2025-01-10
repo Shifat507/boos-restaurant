@@ -5,6 +5,7 @@ import { FaEdit } from 'react-icons/fa';
 import { RiDeleteBin6Fill } from 'react-icons/ri';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import { Link } from 'react-router-dom';
 
 const ManageItems = () => {
     const [menu, loading, refetch] = useMenu();
@@ -73,7 +74,7 @@ const ManageItems = () => {
                                 </td>
                                 <td>
                                     <div>
-                                        <div className="font-bold text-md">{item.recipe}</div>
+                                        <div className="font-bold text-md">{item.name}</div>
 
                                     </div>
                                 </td>
@@ -82,7 +83,9 @@ const ManageItems = () => {
                                 </td>
 
                                 <td>
-                                    <button className="btn btn-ghost btn-md text-green-500"><FaEdit size={25} /></button>
+                                    <Link to={`/dashboard/updateItem/${item._id}`}>
+                                        <button className="btn btn-ghost btn-md text-green-500"><FaEdit size={25} /></button>
+                                    </Link>
                                 </td>
                                 <td>
                                     <button onClick={() => handleDeleteItem(item)} className="btn btn-ghost btn-md text-red-500"><RiDeleteBin6Fill size={25} /></button>
@@ -96,4 +99,4 @@ const ManageItems = () => {
     );
 };
 
-export default ManageItems; <h1>Manage Items</h1>
+export default ManageItems; 
