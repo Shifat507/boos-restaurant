@@ -4,12 +4,13 @@ import SectionTile from '../../../components/sectionTile';
 import { RiDeleteBin6Fill } from 'react-icons/ri';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import { Link } from 'react-router-dom';
 
 const Cart = () => {
     const [cart, refetch] = useCart();
     const totalPrice = cart.reduce((total, item) => total + item.price, 0);
     const axiosSecure = useAxiosSecure();
-    
+
     const handleDelete = (id) => {
         Swal.fire({
             title: "Are you sure?",
@@ -43,7 +44,11 @@ const Cart = () => {
             <div className='flex justify-between items-center w-10/12 mx-auto'>
                 <h2 className='text-2xl font-semibold'>Items : {cart.length}</h2>
                 <h2 className='text-2xl font-semibold'>Total Price : ${totalPrice}</h2>
-                <button className="btn btn-warning">Pay</button>
+                {
+                    cart.length ? <Link to='/dashboard/payment'>
+                    <button className="btn btn-warning">Pay</button>
+                </Link> : <button disabled className="btn btn-warning">Pay</button>
+                }
             </div>
             <div className='10/12 mx-auto'>
                 <div className="overflow-x-auto">
