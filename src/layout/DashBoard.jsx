@@ -6,13 +6,15 @@ import { MdRestaurant } from 'react-icons/md';
 import { RiMenuSearchFill, RiMessageFill } from 'react-icons/ri';
 import { Link, NavLink, Outlet } from 'react-router-dom';
 import useAdmin from '../hooks/useAdmin';
+import useCart from '../hooks/useCart';
 
 
 
 const DashBoard = () => {
     const [isAdmin] = useAdmin();
+    const [cart] = useCart();
     return (
-        <div className='flex flex-col md:flex-row'>
+        <div className='flex flex-col md:flex-row '>
             <div className='md:min-h-screen'>
                 <ul className="menu bg-orange-400 text-base-content min-h-full md:w-64 p-4 pt-10">
                     {/* Sidebar content here */}
@@ -28,7 +30,7 @@ const DashBoard = () => {
                             <li><NavLink to='/dashboard/userHome' className='flex items-center gap-3 text-lg font-semibold'> <FaHome /> Home</NavLink></li>
                             <li><NavLink to='/dashboard/reservation' className='flex items-center gap-3 text-lg font-semibold'> <FaCalendarAlt /> Reservation</NavLink></li>
                             <li><NavLink to='/dashboard/paymentHistory' className='flex items-center gap-3 text-lg font-semibold'> <FaHistory /> Payment history</NavLink></li>
-                            <li><NavLink to='/dashboard/cart' className='flex items-center gap-3 text-lg font-semibold'> <FaShoppingCart /> My Cart</NavLink></li>
+                            <li><NavLink to='/dashboard/cart' className='flex items-center gap-3 text-lg font-semibold'> <FaShoppingCart /> My Cart ({cart.length}) </NavLink></li>
                             <li><NavLink to='/dashboard/review' className='flex items-center gap-3 text-lg font-semibold'> <FaStar /> Add Review</NavLink></li>
                             <li><NavLink to='/dashboard/myBooking' className='flex items-center gap-3 text-lg font-semibold'> <FaBook /> My Booking</NavLink></li>
                         </>
